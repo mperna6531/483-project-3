@@ -9,6 +9,9 @@ import sklearn.preprocessing
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import confusion_matrix, roc_curve, roc_auc_score
+from sklearn.linear_model import LogisticRegression
+
+from sklearn.svm import SVC
 
 # Experiment 0: preprocess data - code provided from Prof Kenytt Avery
 # bank.csv from https://archive.ics.uci.edu/ml/datasets/Bank+Marketing
@@ -30,6 +33,7 @@ bank.replace({
     'default': boolean,
     'housing': boolean,
     'loan':    boolean,
+
     'month':   months,
     'y':       boolean
 }, inplace=True)
@@ -73,6 +77,7 @@ cm = confusion_matrix(y_test, y_pred)
 
 # c, d 
 # 
+
 # needs double checking
 
 y_probs = clf.predict_proba(X_test)
@@ -94,3 +99,15 @@ plt.show()
 
 
 # Experiment 4
+linreg_clf = LogisticRegression(fit_intercept=False, solver='lbfgs', random_state=1)
+linreg_clf.fit(X_train, y_train)
+
+# Experiment 5
+kernels = ['linear', 'poly', 'rbf', 'sigmoid']
+
+results = dict()
+for kernel in kernels:
+    svc = SVC(kernel=kernel, gamma='scale', random_state=1).fit(X_train, y_train)
+    results[kernel] = svc.score(X_test, y_test)
+
+print('Best performing kernel: ', max(zip(results.values(), results.keys())))
