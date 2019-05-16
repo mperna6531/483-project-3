@@ -118,6 +118,7 @@ for kernel in kernels:
 print('Best performing kernel: ', max(
     zip(svc_results.values(), svc_results.keys())))
 
+print(svc_results.values())
 # Experiment 6 - SVC performs best with score of ~ 0.8818
 
 # Experiment 7
@@ -130,3 +131,5 @@ for val in y_train:
         zeros += 1
 
 print(f'y_train contains {zeros} zeros and {ones} ones')
+guess0Predict = zeros/(ones+zeros)
+print(guess0Predict)
