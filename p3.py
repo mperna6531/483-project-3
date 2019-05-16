@@ -77,12 +77,10 @@ print('NB score: ', nb_clf.score(X_test, y_test))
 # b
 y_pred = nb_clf.predict(X_test)
 cm = confusion_matrix(y_test, y_pred)
+print(cm)
 
 # c, d
 #
-
-# needs double checking
-
 y_probs = nb_clf.predict_proba(X_test)
 fpr, tpr, thresholds = roc_curve(y_test, y_probs[:, 1])
 auc = roc_auc_score(y_test, y_probs[:, 1])
@@ -133,13 +131,13 @@ for val in y_train:
 
 print(f'y_train contains {zeros} zeros and {ones} ones')
 guess0Predict = zeros/(ones+zeros)
-print(guess0Predict)
+print("Accuracy: " + str(guess0Predict))
 
 y_probs = np.full((len(y_train), 1), 0)
 
 fpr, tpr, thresholds = roc_curve(y_train, y_probs)
 auc = roc_auc_score(y_train, y_probs)
-print(auc)
+print("AUC: " + str(auc))
 
 
 # Experiment 8
@@ -199,12 +197,10 @@ print('NB score: ', nb_clf.score(X_test, y_test))
 # b
 y_pred = nb_clf.predict(X_test)
 cm = confusion_matrix(y_test, y_pred)
+print(cm)
 
 # c, d
 #
-
-# needs double checking
-
 y_probs = nb_clf.predict_proba(X_test)
 fpr, tpr, thresholds = roc_curve(y_test, y_probs[:, 1])
 auc = roc_auc_score(y_test, y_probs[:, 1])
